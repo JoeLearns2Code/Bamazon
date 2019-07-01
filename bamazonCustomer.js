@@ -135,16 +135,16 @@ function customer() {
     function shopAgain() {
         inquirer.prompt([
             {
+                name: "shop",
                 type: "list",
                 message: "Would you like to make another purchase?",
-                choices: ["Yes.", "No, I am done."],
-                name: "shop"
+                choices: ["Yes.", "No, I am done."]
             }
         ]).then(function (input) {
             if (input.shop === "Yes.") {
                 displayInventory();
             } else {
-                return
+                connection.end();
             }
         })
     };
