@@ -35,7 +35,7 @@ function manager() {
             name: "manage",
             type: "list",
             message: "What would you like to do?",
-            choices: ["View Products for Sale", "View Low Inventory", "Add to Inventory", "Add New Product"]
+            choices: ["View Products for Sale", "View Low Inventory", "Add to Inventory", "Add New Product", "Quit Application"]
 
         }
     ]).then(function (input) {
@@ -45,7 +45,8 @@ function manager() {
                 break;
 
             case "View Low Inventory":
-                console.log("Low Inventory function");
+                // console.log("Low Inventory function");
+                lowInventory();
                 break;
             
             case "Add to Inventory":
@@ -55,6 +56,9 @@ function manager() {
             case "Add New Product":
                 console.log("Add New Product function");
                 break;
+
+            case "Quit Application":
+                connection.end();
         }
     })
 };
@@ -83,3 +87,26 @@ function displayInventory() {
     });
 };
 
+
+//Function to display low inventory products
+function lowInventory(){
+    connection.query("SELECT * FROM products WHERE products.stock_quantity < 5", function (err, res) {
+        if (err) throw err;
+        var table = new Table({
+            head: [chalk.blue("ID#"), chalk.blue("Product Name"), chalk.blue("Department"), chalk.blue("Price"), chalk.blue("Available Qty")],
+            colWidths: [5, 50, 15, 10, 20]
+        });
+        for (var i = 0; i < res.length; i++) {
+            var tableID = res[i].id;
+            var tableProd = res[i].product_name;
+            var tableDept = res[i].department_name;
+            var tablePrice = res[i].price;
+            var tableQty = res[i].stock_quantity
+            table.push(
+                [tableID, tableProd, tableDept, tablePrice, tableQty]
+            );
+        }
+        console.log(table.toString());
+        manager();
+    });
+};
