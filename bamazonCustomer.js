@@ -53,7 +53,7 @@ function displayInventory() {
 };
 
 
-//TODO: function allows customer to select an ID to buy
+//Function allows customer to select an ID to buy
 //customer can indicate how many they would like to buy
 //if there is sufficient qty, customer buys and the qty subtracts
 //if there is not enough qty, customer gets an insufficient stock message
@@ -72,14 +72,7 @@ function customer() {
                         }
                         return choiceArray;
                     },
-                    message: "Which item ID would you like to buy?",
-                    validate: function (value) {
-                        if (isNaN(value) === false) {
-                            return true;
-                        }
-                        console.log(chalk.yellow("\nPlease enter in a number."));
-                        return false;
-                    }
+                    message: "Which item would you like to buy?"
                 },
                 {
                     name: "qtyBuy",
@@ -135,16 +128,16 @@ function customer() {
     function shopAgain() {
         inquirer.prompt([
             {
+                name: "shop",
                 type: "list",
                 message: "Would you like to make another purchase?",
-                choices: ["Yes.", "No, I am done."],
-                name: "shop"
+                choices: ["Yes.", "No, I am done."]
             }
         ]).then(function (input) {
             if (input.shop === "Yes.") {
                 displayInventory();
             } else {
-                return
+                connection.end();
             }
         })
     };

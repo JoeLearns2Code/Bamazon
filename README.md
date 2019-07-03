@@ -4,6 +4,8 @@ Bamazon is a console-based program that simulates a highly simplified online ret
 
 Through the bamazonCustomer.js program, the user can view available products and purchase the desired quantity of items provided there is sufficient inventory in stock.
 
+With the bamazonManager.js program, the user can check inventory, check specifically for low inventory products(qty < 5), add to a product's stock quantity, or add a new product to the Bamazon database.
+
 
 ![Bamazon Demo](demo_files/customer_purchase.gif)
 
@@ -13,7 +15,10 @@ This app is a command-based program that can be run on GitBash or Terminal; it i
 
 You will also need to have Node.js and several npm packages installed.  See installation section for details.  Lastly, you will need to have MySQL installed along with the corresponding npm package.
 
-In the console, navigate to the folder where the .js files are stored.  To run the customer program, simple type the following in the command line: node bamazonCustomer index.js
+In the console, navigate to the folder where the .js files are stored.  
+
+* To run the customer program, simply type the following in the command line:  node bamazonCustomer.js
+* To run the manager program, enter:  node bamazonManager.js
 
 ### Prerequisites
 
@@ -55,6 +60,22 @@ Type in 'node bamazonCustomer.js' to begin the customer purchase program.  You w
 If there is sufficient quantity in stock, you will receive a message that the item has been purchased, and be asked if you would like to shop again.  If you choose to do so, you will see the quanity you specified is now subtracted from the total inventory of the item you purchased.
 
 If you enter a desired amount that is higher than the currently available quantity, you will receive a message that there is insufficient stock, and be prompted if you would like to try shopping again or quit the program.
+
+### bamazonManager.js
+
+Type 'node bamazonManager.js' to begin the management program.  You will be given a list of different tasks you can perform.  Select one and press enter to begin.
+
+'View Products for Sale' - allows you to view the current inventory, similar to what is displayed on the customer purchase program.
+
+'View Low Inventory' - specifically displays only products that have less than 5 units in stock.
+
+'Add to Inventory' - allows you to add to the current units in stock.  You will first be prompted to select an item, and then enter the amount you would like to add.  This is then added to the bamazon database.
+
+'Add New Product' - allows you to create an entirely new product in the bamazon database.  You will be prompted to enter in a product name, applicable department, price, and finally the starting stock available.  Once all of this information has been entered, you will see your new product added to the Bamazon inventory.
+
+'Quit Application' - Quits out of the bamazon.Manager.js app and back into the console.
+
+
 
 
 ## Testing
